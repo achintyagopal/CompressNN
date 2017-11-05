@@ -1,0 +1,11 @@
+main.py
+    Uses Variational Autoencoders to create a compressed representation of images. The model outputs a encoding as well as a mask. The loss function uses the variational aspect for regularization and adds a term to be minimized if the mask is 0'd.
+
+evaluate.py
+    The model is evaluated by calculating the MSE loss when each image is passed through the model. To improve the quality of the compression, evaluation backprops through the encoding to minimize the MSE loss. The evaluation also calculates the average compression for each image.
+
+When run on MNIST
+
+The encoding is a vector of size 20 (which means each image is described in 160 bytes plus 20 bits for the mask). The average MSE loss can be minimized to 700 per 128 images from 1100 per 128 images. The compression on average is only 0.8 per image. However, this is still a compression of factor 5-ish.
+
+TODO: Run on Cifar-10
